@@ -26,13 +26,13 @@ jobs:
 
       - name: Run Bandit (SAST)
         run: |
-          # 运行静态代码扫描，允许他报错，但必须生成报告
+          # Run the static static code analysis, allowing him to report errors, but a report must be generated.
           bandit -r . -f json -o bandit-report.json || true
           bandit -r . -f screen || true
 
       - name: Run Safety (SCA)
         run: |
-          # 运行依赖库扫描，检查已知漏洞
+          # Run a dependency library scan to check for known vulnerabilities.
           safety check --json > safety-report.json || true
           safety check || true
 

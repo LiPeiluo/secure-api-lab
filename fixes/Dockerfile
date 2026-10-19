@@ -1,0 +1,1 @@
+FROM docker.m.daocloud.io/library/nginx:1.13.3
