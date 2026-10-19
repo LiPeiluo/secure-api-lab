@@ -176,4 +176,4 @@ The modified `docker-compose.yml` and the new `Dockerfile` are included in the `
 
 In this work, a secure REST API was developed with Flask, protected with parameterized queries, output escaping, bcrypt password hashing, and JWT-based authentication, and equipped with an automated GitHub Actions pipeline running Bandit (SAST) and Safety (SCA) on every push. A real vulnerability, CVE-2017-7529, was reproduced in the controlled Vulhub environment, analyzed down to the integer overflow in the range filter module, and eliminated by upgrading the server, with the fix verified by repeating the attack.
 
-The work demonstrates that security must be addressed at several levels at once: in the application code, in the dependencies through automated scanning, and in the runtime environment through timely updates.
+The work demonstrates that security must be addressed at several levels at once: in the application code, in the dependencies through automated scanning, and in the runtime environment through timely updates. 
