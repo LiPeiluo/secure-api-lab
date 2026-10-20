@@ -32,9 +32,8 @@ jobs:
 
       - name: Run Safety (SCA)
         run: |
-          # Run a dependency library scan to check for known vulnerabilities.
-          safety check --json > safety-report.json || true
-          safety check || true
+          safety scan --output json --save-as json safety-report.json || true
+          safety scan || true
 
       - name: Upload security reports
         uses: actions/upload-artifact@v6
