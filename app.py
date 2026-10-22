@@ -5,9 +5,10 @@ from flask_jwt_extended import (
     JWTManager, create_access_token, jwt_required, get_jwt_identity
 )
 from markupsafe import escape
+import os
 
 app = Flask(__name__)
-app.config['JWT_SECRET_KEY'] = 'dev-secret-key-change-me'
+app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET_KEY', 'local-dev-fallback-key')
 jwt = JWTManager(app)
 
 DB = 'users.db'
@@ -76,5 +77,9 @@ def get_data():
 def profile():
     return jsonify({"user_id": get_jwt_identity()}), 200
 
+
+
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    # 默认关闭 debug，只有在本地开发环境通过环境变量显式开启
+    is_debug = os.environ.get('FLASK_DEBUG', 'False').lower() == 'true'
+    app.run(debug=is_debug, port=5000)
