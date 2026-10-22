@@ -30,10 +30,13 @@ jobs:
           bandit -r . -f json -o bandit-report.json || true
           bandit -r . -f screen || true
 
-      - name: Run Safety (SCA)
+      - name: Run pip-audit (SCA)
         run: |
-          safety scan --output json --save-as json safety-report.json || true
-          safety scan || true
+          pip install pip-audit
+          # 扫描 requirements.txt 并输出到文件和控制台
+          pip-audit -r requirements.txt > pip-audit-report.txt || true
+          cat pip-audit-report.txt
+
 
       - name: Upload security reports
         uses: actions/upload-artifact@v6
